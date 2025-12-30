@@ -1,6 +1,6 @@
-# ローカル（devcontainer）と CI 環境(Github Actions)を一致させる Dockerfile
-# pip install は ビルド時に1回
-# CI が速く・壊れにくい
+# Dev Container 専用 Dockerfile
+# VS Code の devcontainer 用。開発体験（ツールや拡張、デバッグ）を優先して設定します。
+# **CI（自動実行）や本番では使用しません。CI はリポジトリルートの `Dockerfile` を参照してください。**
 
 FROM mcr.microsoft.com/devcontainers/python:0-3.11
 
