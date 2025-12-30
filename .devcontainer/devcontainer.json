@@ -1,0 +1,39 @@
+{
+  // 開発コンテナ (devcontainer) の設定ファイル
+  // VS Code がこの設定を使ってコンテナをビルド・起動し、再現可能な開発環境を提供
+
+  // コンテナの表示名
+  "name": "test-github-actions Dev Container",
+
+  // コンテナをビルドする際に使用する Dockerfile とコンテキストを指定
+  // Dockerfile の場所やビルドコンテキストを間違えないよう注意
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": ".."
+  },
+
+  // コンテナ内での作業ディレクトリで、VS Code はこのフォルダをルートとして扱います。
+  "workspaceFolder": "/workspace",
+
+  "customizations": {
+    "vscode": {
+      "settings": {
+        // pytest を使用する設定。プロジェクトのテストディレクトリに合わせて調整してください。
+        "python.testing.pytestEnabled": true,
+        "python.testing.pytestArgs": ["tests"],
+        // コンテナ内で使う Python のパスを指定。環境に合わせて変更。
+        "python.defaultInterpreterPath": "/usr/local/bin/python"
+      },
+      "extensions": [
+        // コンテナ起動時に自動でインストールする VS Code 拡張
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "ms-python.black-formatter",
+        "ms-azuretools.vscode-docker"
+      ]
+    }
+  },
+
+  // コンテナ内での操作ユーザー。通常は "vscode" のままで問題なし
+  "remoteUser": "vscode"
+}

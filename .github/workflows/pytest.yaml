@@ -1,0 +1,31 @@
+name: Run Pytest
+
+# プルリクエストが作成または更新されたときにトリガーされる
+on:
+    pull_request:
+        branches: [ main ]
+
+jobs:
+    test:
+        # Githubが提供する最新のUbuntu環境でジョブを実行
+        # 自分でホストするランナーを使用する場合は、ここを変更
+        runs-on: ubuntu-latest
+
+        steps:
+            # 最初にリポジトリをチェックアウトする必要あり
+        - name: Check out repository code
+          uses: actions/checkout@v4
+
+            # Python環境をセットアップ
+        - name: Set up Python
+          uses: actions/setup-python@v4
+          with:
+              python-version: '3.13'
+
+            # ライブラリのインストール
+        - name: Install dependencies
+          run:  pip install -r requirements.txt
+ 
+            # Pytestを実行
+        - name: Run Pytest
+          run:  pytest
