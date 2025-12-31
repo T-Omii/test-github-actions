@@ -1,1 +1,2 @@
+# Test runner (default). The CI delegates to ./scripts/test.sh and TEST_CMD can override.
 pytest

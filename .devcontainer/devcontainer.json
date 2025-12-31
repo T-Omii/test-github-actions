@@ -18,10 +18,8 @@
   "customizations": {
     "vscode": {
       "settings": {
-        // pytest を使用する設定。プロジェクトのテストディレクトリに合わせて調整してください。
-        "python.testing.pytestEnabled": true,
-        "python.testing.pytestArgs": ["tests"],
-        // コンテナ内で使う Python のパスを指定。環境に合わせて変更。
+        // Tests are executed via `./scripts/test.sh` inside the container by default.
+        // To change the test runner/args, set the TEST_CMD env var (e.g. `TEST_CMD="python -m unittest discover"`).
         "python.defaultInterpreterPath": "/usr/local/bin/python"
       },
       "extensions": [
@@ -33,6 +31,8 @@
       ]
     }
   },
+  // コンテナ作成後に実行されるコマンドを共有スクリプトに委譲します
+  "postCreateCommand": "./scripts/test.sh",
 
   // コンテナ内での操作ユーザー。通常は "vscode" のままで問題なし
   "remoteUser": "vscode"
